@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCA Premium Live Test</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background-color: #eef2f5; 
+            color: #333;
+            padding: 20px; 
+            margin: 0;
+        }
+        .container { 
+            background: white; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 30px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1); 
+            border-top: 8px solid #1a5276; 
+            border-radius: 8px;
+        }
+        .header { text-align: center; border-bottom: 2px solid #1a5276; padding-bottom: 15px; margin-bottom: 25px; }
+        .header h1 { margin: 0; color: #1a5276; font-size: 26px; }
+        .header h2 { margin: 5px 0 0; color: #555; font-size: 16px; }
+        .instructions { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; font-size: 14px; margin-bottom: 25px; border-radius: 4px; }
+        .section-title { background: #1a5276; color: white; padding: 10px 15px; font-size: 16px; font-weight: bold; margin: 30px 0 15px 0; border-radius: 4px; }
+        .question-block { margin-bottom: 20px; padding: 15px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; }
+        .question-text { font-weight: 600; color: #1e293b; margin-bottom: 12px; font-size: 15px; }
+        .options { display: flex; flex-direction: column; gap: 8px; }
+        .option-label { display: flex; align-items: center; padding: 8px 12px; background: white; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; transition: 0.2s; font-size: 14px; }
+        .option-label:hover { background: #f1f5f9; }
+        .option-label input { margin-right: 10px; cursor: pointer; }
+        
+        /* Result Highlights */
+        .correct-answer { background-color: #d4edda !important; border-color: #28a745 !important; color: #155724 !important; font-weight: bold; }
+        .wrong-answer { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #721c24 !important; text-decoration: line-through; }
+        
+        .submit-btn { display: block; width: 100%; padding: 15px; background: #1a5276; color: white; border: none; font-size: 18px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 30px; transition: 0.3s; }
+        .submit-btn:hover { background: #154360; }
+        
+        #result-box { display: none; background: #d4edda; color: #155724; border: 2px solid #28a745; padding: 20px; margin-top: 30px; text-align: center; border-radius: 8px; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>12th - LIVE EXAM PORTAL</h1>
+        <h3>सिपाही की माँ Online Test (50 Questions)</h3>
+<h2 style="font-size:10px; color:#888; font-weight:normal;">
+    यह test sangam (in id-@sangam__zero) द्वारा बनाया गया है। यदि आप भी अपने लिए इसी प्रकार का online test बनवाना चाहते हैं, तो 9241967602 पर Message कर सकते हैं।</h2>
+    </div>
+
+    <div class="instructions">
+        <strong>निर्देश:</strong> सभी प्रश्नों के उत्तर दें। प्रत्येक प्रश्न के 4 विकल्प हैं। परीक्षण पूरा करने के बाद <strong>"Submit Test"</strong> पर क्लिक करें ताकि आप अपना स्कोर और सही उत्तर देख सकें।
+    </div>
+
+    <form id="quizForm">
+        
+        <!-- SECTION 01 -->
+        <div class="section-title">SECTION 01. </div>
+        
+        <script>
+            // All 50 Questions Data (Generated Dynamically for clean code)
+           const questions = [
+                // SECTION - सिपाही की माँ (मोहन राकेश) - Hindi 12th Objective Questions
+                { q: "1. 'सिपाही की माँ' एकांकी के लेखक कौन हैं ?", opt: ["रामधारी सिंह दिनकर", "मोहन राकेश", "नामवर सिंह", "उदय प्रकाश"], ans: 1 },
+                { q: "2. 'विशनी' किस एकांकी की पात्रा है ?", opt: ["पैर तले की जमीन", "लहरों के राजहंस", "आधे अधूरे", "सिपाही की माँ"], ans: 3 },
+                { q: "3. मानक की माँ का नाम क्या है ?", opt: ["कुंती", "मुन्नी", "बिशनी", "इनमें से कोई नहीं"], ans: 2 },
+                { q: "4. मानक किस युद्ध में सिपाही के रूप में लड़ने गया है ?", opt: ["प्रथम विश्व युद्ध", "द्वितीय विश्व युद्ध", "कारगिल का युद्ध", "इनमें से कोई नहीं"], ans: 1 },
+                { q: "5. 'सिपाही की माँ' एकांकी में किसकी कथावस्तु प्रस्तुत की गयी है ?", opt: ["बाप-बेटा", "माँ-बाप", "माँ-बेटी", "इनमें कोई नहीं"], ans: 2 },
+                { q: "6. मोहन राकेश किस पत्रिका के सम्पादक रहे ?", opt: ["सारिका", "सरिता", "स्मारिका", "इनमें कोई नहीं"], ans: 0 },
+                { q: "7. मुन्नी डाक गाड़ी के पीछे क्यों जाती है ?", opt: ["राशन के लिए", "पेंशन के लिए", "चिट्ठी के लिए", "किसी अन्य कार्य के लिए"], ans: 2 },
+                { q: "8. डाक गाड़ी के पीछे चिट्ठी के लिए कौन जाती है ?", opt: ["बिशनी", "मुन्नी", "कुन्ती", "इनमें कोई नहीं"], ans: 1 },
+                { q: "9. मानक विशनी से दूध की जगह क्या माँगता है ?", opt: ["पानी", "चाय", "खाना", "इनमें कुछ नहीं"], ans: 1 },
+                { q: "10. ईसाई हसाई लड़कियाँ विशनी के घर आकर क्या माँगती हैं ?", opt: ["रुपये", "चावल-दाल", "कपड़े", "इनमें से कोई नहीं"], ans: 1 },
+                { q: "11. 'तेरह दिनों तक हम लोग भूखे-प्यासे जंगली रास्ते में चलते रहे हैं', यह किसने कहा है ?", opt: ["कुंती", "चौधरी", "ईसाई लड़की", "दीनू"], ans: 2 },
+                { q: "12. निम्नलिखित में कौन-सी कृति मोहन राकेश की नहीं है ?", opt: ["इंसान के खंडहर", "फौलाद का आकाश", "आषाढ़ का एक दिन", "दरियाई घोड़ा"], ans: 3 },
+                { q: "13. निम्नलिखित में से कौन-सी रचना मोहन राकेश की है ?", opt: ["रसातल यात्रा", "सुखमय जीवन", "न आने वाला कल", "हारे को हरिनाम"], ans: 2 },
+                { q: "14. किसकी माँ पागल हो गयी है ?", opt: ["मानक की", "सिपाही की", "चौधरी की", "दीनू की"], ans: 0 },
+                { q: "15. मुन्नी की उम्र कितनी हो गयी है ?", opt: ["10 वर्ष", "12 वर्ष", "14 वर्ष", "16 वर्ष"], ans: 2 },
+                { q: "16. निम्नलिखित में विशनी की पड़ोसिन कौन है ?", opt: ["आभा", "विमला", "कुंती", "माधुरी"], ans: 2 },
+                { q: "17. मुन्नी किस दिन मानक की चिट्ठी के आने की भविष्यवाणी करती है ?", opt: ["बुधवार को", "बृहस्पतिवार को", "सोमवार को", "मंगलवार को"], ans: 1 },
+                { q: "18. कौन कहता है? 'मैं इसकी लाश ले जाकर चील और कौओं के आगे डाल दूंगा।'", opt: ["मानक", "सिपाही", "दीनू", "चौधरी"], ans: 3 },
+                { q: "19. किसके कड़ों के मोती तारों की तरह चमकते हैं ?", opt: ["बंतो के", "तारो के", "धन्नो के", "इनमें से कोई नहीं"], ans: 2 },
+                { q: "20. किस पाठ में यह उद्धरण आया है? 'फौजी वहाँ लड़ने के लिए हैं, वे भाग नहीं सकते। जो फौज छोड़कर भागता है, उसे गोली मार दी जाती है।'", opt: ["हँसते हुए मेरा अकेलापन", "'प्रगीत' और समाज", "सिपाही की माँ", "ओ सदानीरा"], ans: 2 },
+                { q: "21. मोहन राकेश का जन्म कब हुआ था ?", opt: ["8 जनवरी 1925 को", "18 फरवरी 1930 को", "20 जनवरी 1926 को", "14 जनवरी 1931 को"], ans: 0 },
+                { q: "22. इनमें कौन-सी कृति मोहन राकेश की है ?", opt: ["जिंदगी मुस्कुराई", "जानवर और जानवर", "कोशी का घटवार", "बहती गंगा"], ans: 0 },
+                { q: "23. कौन-सी कृति मोहन राकेश की नहीं है ?", opt: ["एक और जिंदगी", "अँधेरे बंद कमरे", "इतिहास और आलोचना", "आधे अधूरे"], ans: 2 },
+                { q: "24. 'सिपाही की माँ' किस एकांकी संग्रह से लिया गया है ?", opt: ["ऊसर", "भोर का तारा", "रेशमी टाई", "अंडे के छिलके तथा अन्य एकांकी"], ans: 3 },
+                { q: "25. मुन्नी और मानक की माँ का नाम है –", opt: ["कृष्णा", "किशनी", "बिशनी", "विमली"], ans: 2 },
+                { q: "26. 'सिपाही की माँ' एकांकी के अनुसार लड़ाई कहाँ हो रही है ?", opt: ["लाहौर", "बर्मा", "बंगाल में", "जापान में"], ans: 1 },
+                { q: "27. मोहन राकेश की एकांकी का शीर्षक है –", opt: ["'रोज'", "'सिपाही की माँ'", "'जूठन'", "'शिक्षा'"], ans: 1 },
+                { q: "28. सिपाही की माँ कौन है ?", opt: ["द्रुपददेई", "बिशनदेई", "लखनदेई", "हरखदेई"], ans: 1 },
+                { q: "29. 'सिपाही की माँ' एकांकी में कुंती कौन है ?", opt: ["बिशनदेई की बहन", "सिपाही की माँ", "पड़ोसिन", "मुन्नी की मौसी"], ans: 2 },
+                { q: "30. 'रवेस' क्या होता है ?", opt: ["रेशमी चादर", "ऊनी चादर", "मोटे सूत की बुनी चादर", "कंबल"], ans: 2 },
+                { q: "31. किसके कड़ों के मोती तारों की तरह चमकते हैं ?", opt: ["तारो के", "बंतो के", "मुन्नी के", "कुंती के"], ans: 0 }
+            ];
+            // Render Questions
+            questions.forEach((item, index) => {
+                if(index === 10) document.write('<div class="section-title">SECTION 02. </div>');
+                if(index === 20) document.write('<div class="section-title">SECTION 03. </div>');
+                if(index === 30) document.write('<div class="section-title">SECTION 04. </div>');
+                if(index === 40) document.write('<div class="section-title">SECTION 05. </div>');
+
+                let optionsHTML = '';
+                item.opt.forEach((option, i) => {
+                    optionsHTML += `
+                        <label class="option-label" id="label-q${index}-opt${i}">
+                            <input type="radio" name="q${index}" value="${i}">
+                            ${String.fromCharCode(97 + i)}) ${option}
+                        </label>`;
+                });
+
+                document.write(`
+                    <div class="question-block" id="qBlock${index}">
+                        <div class="question-text">${item.q}</div>
+                        <div class="options">${optionsHTML}</div>
+                    </div>
+                `);
+            });
+        </script>
+
+        <button type="button" class="submit-btn" onclick="calculateScore()">Submit Test & Check Result</button>
+    </form>
+
+    <div id="result-box"></div>
+
+</div>
+
+<script>
+    function calculateScore() {
+        let score = 0;
+        let total = questions.length;
+
+        questions.forEach((item, index) => {
+            // Get selected option
+            let selected = document.querySelector(`input[name="q${index}"]:checked`);
+            let correctValue = item.ans;
+            
+            // Highlight correct answer permanently
+            let correctLabel = document.getElementById(`label-q${index}-opt${correctValue}`);
+            correctLabel.classList.add("correct-answer");
+
+            if (selected) {
+                let selectedValue = parseInt(selected.value);
+                if (selectedValue === correctValue) {
+                    score++;
+                } else {
+                    // Highlight wrong answer if user selected it
+                    let wrongLabel = document.getElementById(`label-q${index}-opt${selectedValue}`);
+                    wrongLabel.classList.add("wrong-answer");
+                }
+            }
+        });
+
+        // Show Score
+        let resultBox = document.getElementById('result-box');
+        resultBox.style.display = "block";
+        
+        let percentage = (score / total) * 100;
+        let message = "";
+        
+        if(percentage >= 80) message = "उत्कृष्ट प्रदर्शन! 🌟";
+        else if(percentage >= 50) message = "अच्छा प्रयास, थोड़ी और मेहनत करें! 👍";
+        else message = "आपको और अभ्यास की आवश्यकता है! 📚";
+
+        resultBox.innerHTML = `आपका स्कोर: ${score} / ${total} <br><span style="font-size:18px; color:#333;">${message}</span>`;
+        
+        // Scroll to result
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
